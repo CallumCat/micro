@@ -19,13 +19,15 @@ function bail(err: Error | undefined) {
 // todo: on startup/every X check for files deleted from disk and delete them from the db.
 async function main() {
   const port = process.env.PORT ? +process.env.PORT : 8080;
+  const isProduction = process.env.NODE_ENV === "production";
+  const synchronize = config.synchronize ?? !isProduction;
   const server = fastify();
 
   await createConnection({
     type: "sqlite",
     database: path.join(config.paths.base, ".microindex"),
     entities: [path.resolve(__dirname, "entities/**/*.{ts,js}")],
-    synchronize: process.env.SYNCHRONIZE !== "true" && process.env.NODE_ENV !== "production",
+    synchronize: synchronize,
   }).then(() => logger.info("Created database connection"));
 
   server.register(multipart, {
@@ -42,6 +44,7 @@ async function main() {
   if (config.redirect) {
     server.get("/", async (req, reply) => reply.redirect(302, config.redirect!));
   }
+
   server.post("/upload", uploadHandler);
   server.get("/delete/:query", deletionHandler);
   server.get("/:query", fileHandler);
