@@ -15,7 +15,7 @@ jobs:
         uses: ilteoood/docker_buildx@master
         with:
           publish: true
-          imageName: sylv/micro
+          imageName: sylver/micro
           tags: ${GITHUB_REF##*/}-${{ steps.package-version.outputs.current-version}},${GITHUB_REF##*/}
           dockerHubUser: ${{ secrets.DOCKER_USERNAME }}
           dockerHubPassword: ${{ secrets.DOCKER_PASSWORD }}
