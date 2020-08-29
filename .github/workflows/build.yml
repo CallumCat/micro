@@ -1,0 +1,21 @@
+name: build
+on: push
+
+jobs:
+  buildx:
+    runs-on: ubuntu-latest
+    name: Build docker image
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@master
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@master
+      - name: Build and publish image
+        uses: ilteoood/docker_buildx@master
+        with:
+          publish: true
+          imageName: sylv/micro
+          tags: ${GITHUB_REF##*/}-${{ steps.package-version.outputs.current-version}},${GITHUB_REF##*/}
+          dockerHubUser: ${{ secrets.DOCKER_USERNAME }}
+          dockerHubPassword: ${{ secrets.DOCKER_PASSWORD }}
