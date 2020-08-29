@@ -42,5 +42,6 @@ COPY --from=builder /opt/micro/node_modules .
 COPY --from=builder /opt/micro/dist .
 COPY package.json package.json
 
+ENV NODE_ENV=production
 CMD ["yarn", "start"]
 EXPOSE 8080
