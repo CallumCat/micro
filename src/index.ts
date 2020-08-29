@@ -9,6 +9,7 @@ import { deletionHandler } from "./routes/delete";
 import { fileHandler } from "./routes/file";
 import { thumbHandler } from "./routes/thumb";
 import { uploadHandler } from "./routes/upload";
+import { getConfigHandler } from "./routes/getcfg";
 
 function bail(err: Error | undefined) {
   if (!err) return;
@@ -47,12 +48,14 @@ async function main() {
 
   server.post("/upload", uploadHandler);
   server.get("/delete/:query", deletionHandler);
+  server.get("/getcfg", getConfigHandler);
   server.get("/:query", fileHandler);
   server.get("/:query/thumbnail", thumbHandler);
 
   server.listen(port, "0.0.0.0", (err, address) => {
     if (err) bail(err);
     logger.info(`Listening on ${address} (${config.host}) NODE_ENV=${process.env.NODE_ENV}`);
+    logger.info(`Visit ${config.host}/getcfg?key=YOUR_KEY to generate a ShareX config.`);
   });
 }
 

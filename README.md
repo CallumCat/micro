@@ -11,3 +11,4 @@ micro is intended on being used exclusively with [Docker](https://docs.docker.co
    - For initial startup set `"synchronize": true`. After micro has populated the database you should set `"synchronize": false` or else data may be overwritten during updates.
 3. `docker run -d --name micro -v /path/to/your/.microrc:/opt/micro/.microrc sylver/micro:master`
    - Replace `/path/to/your/.microrc` with the actual path to the `.microrc` file you filled out.
+4. Visit `/getcfg?key=YOUR_KEY_FROM_MIRORC` to download a ShareX config for your server.
