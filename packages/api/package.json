@@ -13,7 +13,7 @@
     "@nestjs/passport": "^7.1.0",
     "@nestjs/platform-fastify": "^7.4.4",
     "@nestjs/typeorm": "^7.1.4",
-    "aws-sdk": "^2.764.0",
+    "aws-sdk": "^2.814.0",
     "bcrypt": "^5.0.0",
     "class-transformer": "^0.3.1",
     "fastify-multipart": "^3.2.0",
