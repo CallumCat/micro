@@ -12,7 +12,7 @@
     "@geist-ui/react-icons": "^1.0.0",
     "axios": "^0.21.2",
     "generate-avatar": "^1.4.6",
-    "nanoid": "^3.1.12",
+    "nanoid": "^3.1.31",
     "next": "12.1.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
